@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input</title>
+</head>
+<body>
+<form class="CreateVector">
+    <h1>Начальные требования</h1>
+    <select name="Количество производителей" class="manufacturers" required="true">
+        <option value="low">Мало</option>
+        <option value="medium">Среднее</option>
+        <option value="high">Много</option>
+    </select>
+    <select name="Тип устройств" class="deviceTypes" required="true">
+        <option value="sensors">Датчики</option>
+        <option value="actuators">Исполнительные устройства</option>
+        <option value="mixed">Датчики и исполнительные устройства</option>
+    </select>
+    <select name="Географическая разбросанность" class="geographicDistribution" required="true">
+        <option value="low">Низкая</option>
+        <option value="medium">Средняя</option>
+        <option value="high">Высокая</option>
+    </select>
+    <select name="Частота добавления пользователей" class="addUserFrequency" required="true">
+        <option value="low">Низкая</option>
+        <option value="medium">Средняя</option>
+        <option value="high">Высокая</option>
+    </select>
+    <select name="Количество пользователей" required="true" class="usersQuantity">
+        <option value="low">Низкое</option>
+        <option value="medium">Среднее</option>
+        <option value="high">Высокое</option>
+    </select>
+    <select name="Уровень мобильности устройств" class="mobility" required="true">
+        <option value="low">Низкий</option>
+        <option value="medium">Средний</option>
+        <option value="high">Высокий</option>
+    </select>
+    <select name="Работа в реальном времени" class="realTime" required="true">
+        <option value="yes">Требуется</option>
+        <option value="no">Не требуется</option>
+    </select>
+    <select name="Analytic characteristics" class="analytics" required="true">
+        <option value="yes">Требуются</option>
+        <option value="no">Не требуются</option>
+    </select>
+    <select name="Preferred pattern" class="preferred" required="false">
+        <option value="layered">Архитектура слоев</option>
+        <option value="pipesFilters">Каналы и фильтры</option>
+        <option value="clientServer">Клиент-сервер</option>
+        <option value="soa">Сервисно-ориентированная</option>
+        <option value="microservices">Микросервисы</option>
+        <option value="peerToPeer">Точка-точка</option>
+        <option value="publishSubscriber">Издатель-Подписчик</option>
+        <option value="eventOriented">Событийно-ориентированная</option>
+        <option value="plugins">Плагины</option>
+    </select>
+    <input type="submit" value="CreateVector">
+</form>
+<script src="/app.js"></script>
+</body>
+</html>

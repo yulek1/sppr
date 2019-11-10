@@ -1,0 +1,182 @@
+{
+  "tables": [
+    {
+      "name": "quality_attributes",
+      "columns": ["ID", "NAME"],
+      "data": [
+        {"id": 1, "name": "interoperability"},
+        {"id": 2, "name": "modifiability"},
+        {"id": 3, "name": "availability"},
+        {"id": 4, "name": "information_security"},
+        {"id": 5, "name": "performance"}
+      ]
+    },
+    {
+      "name": "modifications_pattern_tactic",
+      "columns": ["ID", "NAME"],
+      "data": [
+        {"id": 1, "name": "Already realized"},
+        {"id": 2, "name": "Add component into pattern"},
+        {"id": 3, "name": "Pattern components modification"},
+        {"id": 4, "name": "Component modification"},
+        {"id": 5, "name": "Add component outside pattern"},
+        {"id": 6, "name": "Duplicate component"}
+      ]
+    },
+    {
+      "name": "tactics",
+      "columns": ["ID", "NAME", "QUALITY_ATTRIBUTE_ID"],
+      "data": [
+        {"id": 1, "name": "Ping-echo", "quality_attribute_id": 3},
+        {"id": 2, "name": "Pulsation", "quality_attribute_id": 3},
+        {"id": 3, "name": "Exception handling", "quality_attribute_id": 3},
+        {"id": 4, "name": "Active redundancy", "quality_attribute_id": 3},
+        {"id": 5, "name": "Passive redundancy", "quality_attribute_id": 3},
+        {"id": 6, "name": "Shadowing", "quality_attribute_id": 3},
+        {"id": 7, "name": "Control point", "quality_attribute_id": 3},
+        {"id": 8, "name": "Delete from service", "quality_attribute_id": 3},
+        {"id": 9, "name": "Transactions", "quality_attribute_id": 3},
+        {"id": 10, "name": "Processes monitoring", "quality_attribute_id": 3},
+
+        {"id": 11, "name": "Discovery service", "quality_attribute_id": 1},
+        {"id": 12, "name": "Orchestration", "quality_attribute_id": 1},
+        {"id": 13, "name": "Tailored interface", "quality_attribute_id": 1},
+
+        {"id": 14, "name": "Authentication", "quality_attribute_id": 4},
+        {"id": 15, "name": "Authorization", "quality_attribute_id": 4},
+        {"id": 16, "name": "Confidence", "quality_attribute_id": 4},
+        {"id": 17, "name": "Integrity", "quality_attribute_id": 4},
+        {"id": 18, "name": "Limit exposure", "quality_attribute_id": 4},
+        {"id": 19, "name": "Limit access", "quality_attribute_id": 4},
+        {"id": 20, "name": "Intrusion detection", "quality_attribute_id": 4},
+        {"id": 21, "name": "Audit trial", "quality_attribute_id": 4},
+
+        {"id": 22, "name": "Increase calculation efficiency", "quality_attribute_id": 5},
+        {"id": 23, "name": "Reduce computantional overhead", "quality_attribute_id": 5},
+        {"id": 24, "name": "Manage events rate", "quality_attribute_id": 5},
+        {"id": 25, "name": "Control frequency of sampling", "quality_attribute_id": 5},
+        {"id": 26, "name": "Parallelization", "quality_attribute_id": 5},
+        {"id": 27, "name": "Maintain multiple copies", "quality_attribute_id": 5},
+        {"id": 28, "name": "Increase available resources", "quality_attribute_id": 5},
+        {"id": 29, "name": "Scheduling policy", "quality_attribute_id": 5},
+
+        {"id": 30, "name": "Semantic coherence", "quality_attribute_id": 2},
+        {"id": 31, "name": "Anticipate expected changes", "quality_attribute_id": 2},
+        {"id": 32, "name": "Generalize module", "quality_attribute_id": 2},
+        {"id": 33, "name": "Limit possible options", "quality_attribute_id": 2},
+        {"id": 34, "name": "Abstract common services", "quality_attribute_id": 2},
+        {"id": 35, "name": "Hide information", "quality_attribute_id": 2},
+        {"id": 36, "name": "Maintain existing interface", "quality_attribute_id": 2},
+        {"id": 37, "name": "Restrict communication paths", "quality_attribute_id": 2},
+        {"id": 38, "name": "Use an intermediary", "quality_attribute_id": 2},
+        {"id": 39, "name": "Runtime registration", "quality_attribute_id": 2},
+        {"id": 40, "name": "Configuration files", "quality_attribute_id": 2},
+        {"id": 41, "name": "Polymorphism", "quality_attribute_id": 2},
+        {"id": 42, "name": "Component replacement", "quality_attribute_id": 2},
+        {"id": 43, "name": "Adherence to defined protocols", "quality_attribute_id": 2}
+      ]
+    },
+    {
+      "name": "patterns",
+      "columns": ["ID", "NAME"],
+      "data": [
+        {"id": 1, "name": "Layered architecture"},
+        {"id": 2, "name": "Pipes and Filters"},
+        {"id": 3, "name": "Client-server"},
+        {"id": 4, "name": "Service-oriented architecture"},
+        {"id": 5, "name": "Microservices"},
+        {"id": 6, "name": "Peer-to-Peer"},
+        {"id": 7, "name": "Publisher-subscriber"},
+        {"id": 8, "name": "Event-oriented"},
+        {"id": 9, "name": "Plugins"}
+      ]
+    },
+    {
+      "name": "tactic_pattern",
+      "columns": ["ID", "TACTIC", "PATTERN"],
+      "data": [
+        {"id": 1, "pattern_id": 1, "tactic_id": 37},
+
+        {"id": 2, "pattern_id": 2, "tactic_id": 26},
+        {"id": 3, "pattern_id": 2, "tactic_id": 29},
+        {"id": 4, "pattern_id": 2, "tactic_id": 37},
+        {"id": 5, "pattern_id": 2, "tactic_id": 38},
+        {"id": 6, "pattern_id": 2, "tactic_id": 42},
+
+        {"id": 7, "pattern_id": 3, "tactic_id": 29},
+        {"id": 8, "pattern_id": 3, "tactic_id": 37},
+
+        {"id": 9, "pattern_id": 4, "tactic_id": 3},
+        {"id": 10, "pattern_id": 4, "tactic_id": 8},
+        {"id": 11, "pattern_id": 4, "tactic_id": 11},
+        {"id": 12, "pattern_id": 4, "tactic_id": 12},
+        {"id": 13, "pattern_id": 4, "tactic_id": 13},
+        {"id": 14, "pattern_id": 4, "tactic_id": 19},
+        {"id": 15, "pattern_id": 4, "tactic_id": 21},
+        {"id": 16, "pattern_id": 4, "tactic_id": 26},
+        {"id": 17, "pattern_id": 4, "tactic_id": 29},
+        {"id": 18, "pattern_id": 4, "tactic_id": 30},
+        {"id": 19, "pattern_id": 4, "tactic_id": 32},
+        {"id": 20, "pattern_id": 4, "tactic_id": 34},
+        {"id": 21, "pattern_id": 4, "tactic_id": 35},
+        {"id": 22, "pattern_id": 4, "tactic_id": 36},
+        {"id": 23, "pattern_id": 4, "tactic_id": 37},
+        {"id": 24, "pattern_id": 4, "tactic_id": 38},
+        {"id": 72, "pattern_id": 4, "tactic_id": 39},
+        {"id": 73, "pattern_id": 4, "tactic_id": 43},
+
+        {"id": 25, "pattern_id": 5, "tactic_id": 8},
+        {"id": 26, "pattern_id": 5, "tactic_id": 11},
+        {"id": 27, "pattern_id": 5, "tactic_id": 12},
+        {"id": 28, "pattern_id": 5, "tactic_id": 19},
+        {"id": 29, "pattern_id": 5, "tactic_id": 29},
+        {"id": 30, "pattern_id": 5, "tactic_id": 30},
+        {"id": 31, "pattern_id": 5, "tactic_id": 31},
+        {"id": 32, "pattern_id": 5, "tactic_id": 32},
+        {"id": 33, "pattern_id": 5, "tactic_id": 33},
+        {"id": 34, "pattern_id": 5, "tactic_id": 34},
+        {"id": 35, "pattern_id": 5, "tactic_id": 36},
+        {"id": 36, "pattern_id": 5, "tactic_id": 37},
+        {"id": 37, "pattern_id": 5, "tactic_id": 38},
+        {"id": 38, "pattern_id": 5, "tactic_id": 39},
+        {"id": 39, "pattern_id": 5, "tactic_id": 40},
+        {"id": 40, "pattern_id": 5, "tactic_id": 42},
+        {"id": 41, "pattern_id": 5, "tactic_id": 43},
+
+        {"id": 42, "pattern_id": 6, "tactic_id": 4},
+        {"id": 43, "pattern_id": 6, "tactic_id": 5},
+        {"id": 44, "pattern_id": 6, "tactic_id": 6},
+        {"id": 45, "pattern_id": 6, "tactic_id": 8},
+        {"id": 46, "pattern_id": 6, "tactic_id": 17},
+        {"id": 47, "pattern_id": 6, "tactic_id": 26},
+        {"id": 48, "pattern_id": 6, "tactic_id": 27},
+        {"id": 49, "pattern_id": 6, "tactic_id": 36},
+        {"id": 50, "pattern_id": 6, "tactic_id": 38},
+        {"id": 51, "pattern_id": 6, "tactic_id": 39},
+        {"id": 52, "pattern_id": 6, "tactic_id": 42},
+        {"id": 53, "pattern_id": 6, "tactic_id": 43},
+
+        {"id": 54, "pattern_id": 7, "tactic_id": 8},
+        {"id": 55, "pattern_id": 7, "tactic_id": 36},
+        {"id": 56, "pattern_id": 7, "tactic_id": 37},
+        {"id": 57, "pattern_id": 7, "tactic_id": 38},
+        {"id": 58, "pattern_id": 7, "tactic_id": 43},
+
+        {"id": 59, "pattern_id": 8, "tactic_id": 8},
+        {"id": 60, "pattern_id": 8, "tactic_id": 36},
+        {"id": 61, "pattern_id": 8, "tactic_id": 37},
+        {"id": 62, "pattern_id": 8, "tactic_id": 38},
+        {"id": 63, "pattern_id": 8, "tactic_id": 43},
+
+        {"id": 64, "pattern_id": 9, "tactic_id": 19},
+        {"id": 65, "pattern_id": 9, "tactic_id": 31},
+        {"id": 66, "pattern_id": 9, "tactic_id": 32},
+        {"id": 67, "pattern_id": 9, "tactic_id": 36},
+        {"id": 68, "pattern_id": 9, "tactic_id": 37},
+        {"id": 69, "pattern_id": 9, "tactic_id": 39},
+        {"id": 70, "pattern_id": 9, "tactic_id": 42},
+        {"id": 71, "pattern_id": 9, "tactic_id": 43}
+      ]
+    }
+  ]
+}
