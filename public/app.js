@@ -1,6 +1,7 @@
 const CreateVector = document.querySelector('.CreateVector')
 CreateVector.addEventListener('submit', (e) => {
     e.preventDefault()
+
     let element = CreateVector.querySelector('.manufacturers');
     const manufacturer = element.options[element.selectedIndex].value;
     element = CreateVector.querySelector('.deviceTypes');
@@ -19,6 +20,7 @@ CreateVector.addEventListener('submit', (e) => {
     const analytics = element.options[element.selectedIndex].value;
     element = CreateVector.querySelector('.preferred');
     const preferred = element.options[element.selectedIndex].value;
+
     post('/createVector', {
         manufacturer,
         deviceType,
@@ -29,6 +31,11 @@ CreateVector.addEventListener('submit', (e) => {
         realTime,
         analytics,
         preferred
+    }).then(response => {
+        let outputPlaceholder = document.getElementById('responseVector');
+        response.json().then(
+            data => outputPlaceholder.innerHTML = JSON.stringify(data)
+        );
     })
 });
 

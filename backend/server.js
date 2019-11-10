@@ -19,7 +19,7 @@ app.post('/createVector', (req, res) => {
             analytics: req.body.analytics,
             preferred: req.body.preferred
         })
-        .then(() => res.sendStatus(200))
+        .then((vectorForWrite) => res.json(vectorForWrite))
 });
 
 const port = 7555;

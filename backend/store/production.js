@@ -125,5 +125,7 @@ module.exports = {
 
         await clearVectorTable();
         await writeRequiredVector(vectorFowWrite);
+
+        return vectorFowWrite;
     }
 }
