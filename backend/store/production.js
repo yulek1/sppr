@@ -2,21 +2,53 @@ const _ = require('lodash');
 const knex = require('knex')(require('../../knexfile'));
 
 const getRequiredAttributesRows = async (names) => {
-    return knex.
-        from('quality_attributes')
+    return knex
+        .from('quality_attributes')
         .select({quality_attribute_id: 'id', name: 'name'})
         .whereIn('name', names);
 };
 
-const clearVectorTable = async () => {
-    return knex('required_attributes').del();
-}
+const clearTable = async (tableName) => {
+    return knex(tableName).del();
+};
 const writeRequiredVector = async(rowsArray) => {
     return knex('required_attributes')
         .insert(rowsArray);
-}
+};
 
-// const dummy = _.find(array, o => o === 'Performance');
+const selectRandomRow = async (tableName) => {
+    return knex(tableName)
+        .orderBy(knex.raw('RAND()'))
+        .limit(1);
+};
+
+const selectRows = async (tableName) => {
+    return knex(tableName);
+};
+
+const selectTacticsForQualityAttributes = async (qualityVector) => {
+    return knex('tactics')
+        .whereIn('quality_attribute_id', qualityVector)
+};
+
+const createConfigurationPattern = async (pattern, requiredTactics) => {
+    const tacticsIds = _.map(requiredTactics, 'id');
+
+    return knex('tactic_pattern')
+        .where('pattern_id', pattern.id)
+        .whereIn('tactic_id', tacticsIds)
+        .whereNot('modification_type_id', 1)
+};
+
+const calculateCost = (configuration, modifications) => {
+    let cost = 0;
+    _.forEach(configuration, configurationRow => {
+
+        cost = cost + _.find(modifications, ['id', configurationRow.modification_type_id]).relative_cost;
+    });
+
+    return cost;
+};
 
 module.exports = {
     async identifyQualityVector(inputObject) {
@@ -123,9 +155,25 @@ module.exports = {
 
         const vectorFowWrite = await getRequiredAttributesRows(_.keys(requiredQualityVector));
 
-        await clearVectorTable();
+        await clearTable('required_attributes');
         await writeRequiredVector(vectorFowWrite);
 
         return vectorFowWrite;
+    },
+
+    async performConstraintSearch() {
+        const patterns = await selectRows('patterns');
+        const qualityVector = await selectRows('required_attributes').then(rows => _.map(rows, 'quality_attribute_id'));
+        const requiredTactics = await selectTacticsForQualityAttributes(qualityVector);
+        const modifications = await selectRows('modifications_pattern_tactic');
+        for (const pattern of patterns) {
+            const configuration = await createConfigurationPattern(pattern, requiredTactics);
+            const cost = calculateCost(configuration, modifications);
+
+            console.log('Cost: ' + cost);
+
+            // formStringForConfiguration(pattern, requiredTactics);
+            // await writeConfiguraiton()
+        }
     }
 }

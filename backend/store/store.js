@@ -4,7 +4,9 @@ const knex = require('knex')(require('../../knexfile'));
 module.exports = {
     createVector (inputObject) {
 
-        return production.identifyQualityVector(inputObject);
+        const qualityVector = production.identifyQualityVector(inputObject);
+        production.performConstraintSearch();
+        return qualityVector;
 
         // return knex('test_table').insert({
         //             username,
