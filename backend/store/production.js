@@ -16,12 +16,6 @@ const writeRequiredVector = async(rowsArray) => {
         .insert(rowsArray);
 };
 
-const selectRandomRow = async (tableName) => {
-    return knex(tableName)
-        .orderBy(knex.raw('RAND()'))
-        .limit(1);
-};
-
 const selectRows = async (tableName) => {
     return knex(tableName);
 };
@@ -31,14 +25,26 @@ const selectTacticsForQualityAttributes = async (qualityVector) => {
         .whereIn('quality_attribute_id', qualityVector)
 };
 
-const createConfigurationPattern = async (pattern, requiredTactics) => {
+const createConfigurationForPattern = async (pattern, requiredTactics) => {
     const tacticsIds = _.map(requiredTactics, 'id');
 
     return knex('tactic_pattern')
-        .where('pattern_id', pattern.id)
-        .whereIn('tactic_id', tacticsIds)
-        .whereNot('modification_type_id', 1)
+        .join('patterns', 'tactic_pattern.pattern_id', 'patterns.id')
+        .join('tactics', 'tactic_pattern.tactic_id', 'tactics.id')
+        .join('modifications_pattern_tactic', 'tactic_pattern.modification_type_id', 'modifications_pattern_tactic.id')
+        .select({
+            pattern_id: 'tactic_pattern.pattern_id',
+            pattern_name: 'patterns.name',
+            tactic_id: 'tactic_pattern.tactic_id',
+            tactic_name: 'tactics.name',
+            modification_type_id: 'tactic_pattern.modification_type_id',
+            modification_type_name: 'modifications_pattern_tactic.name'
+        })
+        .where('tactic_pattern.pattern_id', pattern.id)
+        .whereIn('tactic_pattern.tactic_id', tacticsIds)
+        .whereNot('tactic_pattern.modification_type_id', 1)
 };
+
 
 const calculateCost = (configuration, modifications) => {
     let cost = 0;
@@ -164,16 +170,22 @@ module.exports = {
     async performConstraintSearch() {
         const patterns = await selectRows('patterns');
         const qualityVector = await selectRows('required_attributes').then(rows => _.map(rows, 'quality_attribute_id'));
+
         const requiredTactics = await selectTacticsForQualityAttributes(qualityVector);
         const modifications = await selectRows('modifications_pattern_tactic');
+        let configurations = {};
+
         for (const pattern of patterns) {
-            const configuration = await createConfigurationPattern(pattern, requiredTactics);
-            const cost = calculateCost(configuration, modifications);
-
-            console.log('Cost: ' + cost);
-
-            // formStringForConfiguration(pattern, requiredTactics);
-            // await writeConfiguraiton()
+            const baseConfiguration = await createConfigurationForPattern(pattern, requiredTactics);
+            //const additionalConfigurations = varyTactics(baseConfiguration);
+            let tacticsArray = [];
+            for (const configuration of baseConfiguration) {
+                tacticsArray.push(_.omit(configuration, 'pattern_id', 'pattern_name'));
+            }
+            configurations[pattern.name] = {};
+            configurations[pattern.name].cost = calculateCost(baseConfiguration, modifications);
+            configurations[pattern.name].configuration = tacticsArray;
+            return configurations;
         }
     }
-}
+};
