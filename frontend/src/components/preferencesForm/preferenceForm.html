@@ -1,0 +1,15 @@
+<section>
+    <div class="content">
+    <b-field label="Preferable pattern: ">
+        <b-select v-model="selected" expanded>
+            <option
+                    v-for="pattern in pattern"
+                    :value="pattern.id"
+                    :key="pattern.id">
+                {{ pattern.name }}
+            </option>
+        </b-select>
+    </b-field>
+    </div>
+    <b-button type="is-primary" expanded>Generate variants!</b-button>
+</section>

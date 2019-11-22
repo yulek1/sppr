@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const store = require('./store/store');
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static('frontend'));
 app.use(bodyParser.json());
 
 app.post('/createVector', (req, res) => {
@@ -16,10 +16,17 @@ app.post('/createVector', (req, res) => {
             usersQuantity: req.body.usersQuantity,
             mobility: req.body.mobility,
             realTime: req.body.realTime,
-            analytics: req.body.analytics,
-            preferred: req.body.preferred
+            analytics: req.body.analytics
         })
         .then((vectorForWrite) => res.json(vectorForWrite))
+});
+
+app.post('/createConfiguration', (req, res) => {
+   store
+       .runConstraintSearch({
+           preferred: req.body.preferred
+       })
+       .then((configurations) => res.json(configurations))
 });
 
 const port = 7555;
