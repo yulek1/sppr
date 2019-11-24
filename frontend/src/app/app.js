@@ -1,10 +1,14 @@
 import template from './app.html';
+import store from '../store/store';
 import vectorForm from '../components/vectorForm/vectorForm';
+import vectorArea from '../components/vectorArea/vectorArea';
 import preferenceForm from '../components/preferencesForm/preferenceForm';
+import configurationTable from '../components/configurationsTable/configurationTable';
 
 // @vue/component
 export default {
     name: 'app',
+    store,
     template,
     data() {
         return {
@@ -13,6 +17,8 @@ export default {
     },
     components: {
         vectorForm: vectorForm,
-        preferenceForm: preferenceForm
+        preferenceForm: preferenceForm,
+        configurationTable: configurationTable,
+        vectorArea: vectorArea
     }
 };

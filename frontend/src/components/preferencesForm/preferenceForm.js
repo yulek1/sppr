@@ -16,5 +16,13 @@ export default {
             {id: 'plugins', name: 'Plugins'}
         ],
         selected: 'pipesFilters'
-    })
+    }),
+
+    methods: {
+        onGenerateConfigurationClicked() {
+            this.$store.dispatch('CALL_CONFIGURATION_SERVICE', {
+                preferred: this.selected
+            });
+        }
+    }
 }

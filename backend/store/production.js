@@ -173,19 +173,21 @@ module.exports = {
 
         const requiredTactics = await selectTacticsForQualityAttributes(qualityVector);
         const modifications = await selectRows('modifications_pattern_tactic');
-        let configurations = {};
+        let configurations = [];
 
-        for (const pattern of patterns) {
+        for (const [i, pattern] of patterns.entries()) {
             const baseConfiguration = await createConfigurationForPattern(pattern, requiredTactics);
             //const additionalConfigurations = varyTactics(baseConfiguration);
             let tacticsArray = [];
             for (const configuration of baseConfiguration) {
                 tacticsArray.push(_.omit(configuration, 'pattern_id', 'pattern_name'));
             }
-            configurations[pattern.name] = {};
-            configurations[pattern.name].cost = calculateCost(baseConfiguration, modifications);
-            configurations[pattern.name].configuration = tacticsArray;
-            return configurations;
+            configurations[i] = {};
+            configurations[i].cost = calculateCost(baseConfiguration, modifications);
+            configurations[i].configuration = tacticsArray;
+            configurations[i].pattern = pattern.name;
         }
+
+        return configurations;
     }
 };

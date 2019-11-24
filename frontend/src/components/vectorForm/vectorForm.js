@@ -1,4 +1,6 @@
 import template from './vectorForm.html';
+import store from '../../store/store';
+
 export default {
     name: 'vectorForm',
     template,
@@ -49,5 +51,20 @@ export default {
             selectedMobility: 'low',
             selectedRealTime: 'no',
             selectedAnalytics: 'no'
-    })
+    }),
+
+    methods: {
+        onGenerateVectorClicked() {
+            this.$store.dispatch('CALL_VECTOR_SERVICE', {
+                manufacturer: this.selectedManufacturer,
+                deviceType: this.selectedDeviceType,
+                geographicDistribution: this.selectedGeographicalDistribution,
+                addUserFrequency: this.selectedAddUserFrequency,
+                usersQuantity: this.selectedUsersQuantity,
+                mobility: this.selectedMobility,
+                realTime: this.selectedRealTime,
+                analytics: this.selectedAnalytics
+            });
+        }
+    }
 }

@@ -1,28 +1,24 @@
-import RequestHelper from 'app/util/requestHelper';
+const pathVector = 'http://localhost:7555/createVector';
+const pathConfiguration = 'http://localhost:7555/createConfiguration';
+import axios from 'axios'
 
-const pathVector = '/createVector';
-const pathConfiguration = '/createConfiguration';
+const options = {
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+};
 
 export default {
     createVector: (data) => {
-        window.fetch(pathVector, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
+        return axios.post(pathVector, {
+            data: data
+        }, options)
     },
 
     createConfiguration: (data) => {
-        window.fetch(pathConfiguration, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
+        return axios.post(pathConfiguration, {
+            data: data
+        }, options)
     }
 };
