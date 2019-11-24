@@ -1,5 +1,5 @@
 const pathVector = 'http://localhost:7555/createVector';
-const pathConfiguration = 'http://localhost:7555/createConfiguration';
+const pathConfiguration = 'http://localhost:7555/createConfiguration'; // hehe, crap
 import axios from 'axios'
 
 const options = {

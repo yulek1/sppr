@@ -1,15 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const store = require('./store/store');
-const cors = require('cors')
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
-
-
 
 app.use(cors())
 app.use(express.static('frontend'));
 app.use(bodyParser.json());
+console.log(path.join(__dirname, '../frontend/dist'));
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 app.post('/createVector', (req, res) => {
     store
