@@ -6,7 +6,9 @@ import router from './router';
 import app from './app/app';
 import VueRouter from 'vue-router';
 
-Vue.use(Buefy);
+Vue.use(Buefy, {
+    defaultIconPack: 'fa',
+});
 Vue.use(VueRouter);
 
 const root = new Vue({

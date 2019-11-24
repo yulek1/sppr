@@ -1,19 +1,13 @@
 <section>
-    <div class="tile is-parent is-vertical">
-    <article class="tile is-child box">
-        <div class="content">
+    <div class="tile box is-vertical">
             <p class="title">Configuration: </p>
-            <section>
                 <b-table
                         :data="configuration"
                         ref="table"
-                        detailed
-                        hoverable
+                        :detailed=true
                         custom-detail-row
-                        :default-sort="['name', 'asc']"
                         detail-key="pattern"
-                        :show-detail-icon="showDetailIcon">
-
+                        :show-detail-icon=true>
                     <template slot-scope="props">
                         <b-table-column
                                 field="pattern"
@@ -25,7 +19,7 @@
                                 {{ props.row.pattern }}
                             </template>
                             <template v-else>
-                                <a @click="toggle(props.row)">
+                                <a type="is-primary" @click="toggle(props.row)">
                                     {{ props.row.pattern }}
                                 </a>
                             </template>
@@ -62,15 +56,12 @@
                             <td v-if="showDetailIcon"></td>
                             <td v-show="columnsVisible['tacticName'].display" class="has-text-centered"></td>
                             <td v-show="columnsVisible['tacticName'].display" class="has-text-centered"></td>
-                            <td v-show="columnsVisible['tacticName'].display" >&nbsp;&nbsp;&nbsp;&nbsp;{{ item.tactic_name }}</td>
+                            <td v-show="columnsVisible['tacticName'].display" class="has-text-centered">{{ item.tactic_name }}</td>
                             <td v-show="columnsVisible['modificationType'].display" class="has-text-centered">{{ item.modification_type_name }}</td>
                         </tr>
                     </template>
                 </b-table>
-            </section>
             <b-button type="is-primary" @click="onStartClicked" expanded>I want another time!</b-button>
-        </div>
-    </article>
-</div>
+    </div>
 </section>
 
