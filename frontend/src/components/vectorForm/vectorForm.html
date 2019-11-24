@@ -1,85 +1,97 @@
 <section>
-    <div class="content">
-    <b-field label="Manufacturers: ">
-        <b-select expanded v-model="selectedManufacturer">
-            <option
-                v-for="manufacturer in manufacturer"
-                :value="manufacturer.id"
-                :key="manufacturer.id">
-                {{ manufacturer.name }}
-            </option>
-        </b-select>
-    </b-field>
-    <b-field label="Device Types:">
-        <b-select expanded v-model="selectedDeviceType">
-            <option
-                    v-for="deviceType in deviceType"
-                    :value="deviceType.id"
-                    :key="deviceType.id">
-                {{ deviceType.name }}
-            </option>
-        </b-select>
-    </b-field>
-    <b-field label="Geographical Distribution:">
-        <b-select expanded v-model="selectedGeographicalDistribution">
-            <option
-                    v-for="geographicDistribution in geographicDistribution"
-                    :value="geographicDistribution.id"
-                    :key="geographicDistribution.id">
-                {{ geographicDistribution.name }}
-            </option>
-        </b-select>
-    </b-field>
-    <b-field label="Add users frequency:">
-        <b-select expanded v-model="selectedAddUserFrequency">
-            <option
-                    v-for="addUserFrequency in addUserFrequency"
-                    :value="addUserFrequency.id"
-                    :key="addUserFrequency.id">
-                {{ addUserFrequency.name }}
-            </option>
-        </b-select>
-    </b-field>
-    <b-field label="Users quantity:">
-        <b-select expanded v-model="selectedUsersQuantity">
-            <option
-                    v-for="usersQuantity in usersQuantity"
-                    :value="usersQuantity.id"
-                    :key="usersQuantity.id">
-                {{ usersQuantity.name }}
-            </option>
-        </b-select>
-    </b-field>
-    <b-field label="Devices mobility:">
-        <b-select expanded v-model="selectedMobility">
-            <option
-                    v-for="mobility in mobility"
-                    :value="mobility.id"
-                    :key="mobility.id">
-                {{ mobility.name }}
-            </option>
-        </b-select>
-    </b-field>
-    <b-field label="Real time requirements:">
-        <b-select expanded v-model="selectedRealTime">
-            <option
-                    v-for="realTime in realTime"
-                    :value="realTime.id"
-                    :key="realTime.id">
-                {{ realTime.name }}
-            </option>
-        </b-select>
-    </b-field>
-    <b-field label="Analytic requirements:">
-        <b-select expanded v-model="selectedAnalytics">
-            <option
-                    v-for="analytics in analytics"
-                    :value="analytics.id"
-                    :key="analytics.id">
-                {{ analytics.name }}
-            </option>
-        </b-select>
-    </b-field>
-    </div>
-    <b-button type="is-primary"  @click="onGenerateVectorClicked" expanded>Create Vector!</b-button>
+    <div class="tile is-parent is-vertical">
+    <article class="tile is-child box">
+        <div class="content">
+            <p class="title">Step 1. Requirements vector</p>
+            <p class="subtitle">Please select values and generate the vector:</p>
+            <section>
+                <div class="content">
+                    <b-field label="Manufacturers: ">
+                        <b-select expanded v-model="selectedManufacturer">
+                            <option
+                                    v-for="manufacturer in manufacturer"
+                                    :value="manufacturer.id"
+                                    :key="manufacturer.id">
+                                {{ manufacturer.name }}
+                            </option>
+                        </b-select>
+                    </b-field>
+                    <b-field label="Device Types:">
+                        <b-select expanded v-model="selectedDeviceType">
+                            <option
+                                    v-for="deviceType in deviceType"
+                                    :value="deviceType.id"
+                                    :key="deviceType.id">
+                                {{ deviceType.name }}
+                            </option>
+                        </b-select>
+                    </b-field>
+                    <b-field label="Geographical Distribution:">
+                        <b-select expanded v-model="selectedGeographicalDistribution">
+                            <option
+                                    v-for="geographicDistribution in geographicDistribution"
+                                    :value="geographicDistribution.id"
+                                    :key="geographicDistribution.id">
+                                {{ geographicDistribution.name }}
+                            </option>
+                        </b-select>
+                    </b-field>
+                    <b-field label="Add users frequency:">
+                        <b-select expanded v-model="selectedAddUserFrequency">
+                            <option
+                                    v-for="addUserFrequency in addUserFrequency"
+                                    :value="addUserFrequency.id"
+                                    :key="addUserFrequency.id">
+                                {{ addUserFrequency.name }}
+                            </option>
+                        </b-select>
+                    </b-field>
+                    <b-field label="Users quantity:">
+                        <b-select expanded v-model="selectedUsersQuantity">
+                            <option
+                                    v-for="usersQuantity in usersQuantity"
+                                    :value="usersQuantity.id"
+                                    :key="usersQuantity.id">
+                                {{ usersQuantity.name }}
+                            </option>
+                        </b-select>
+                    </b-field>
+                    <b-field label="Devices mobility:">
+                        <b-select expanded v-model="selectedMobility">
+                            <option
+                                    v-for="mobility in mobility"
+                                    :value="mobility.id"
+                                    :key="mobility.id">
+                                {{ mobility.name }}
+                            </option>
+                        </b-select>
+                    </b-field>
+                    <b-field label="Real time requirements:">
+                        <b-select expanded v-model="selectedRealTime">
+                            <option
+                                    v-for="realTime in realTime"
+                                    :value="realTime.id"
+                                    :key="realTime.id">
+                                {{ realTime.name }}
+                            </option>
+                        </b-select>
+                    </b-field>
+                    <b-field label="Analytic requirements:">
+                        <b-select expanded v-model="selectedAnalytics">
+                            <option
+                                    v-for="analytics in analytics"
+                                    :value="analytics.id"
+                                    :key="analytics.id">
+                                {{ analytics.name }}
+                            </option>
+                        </b-select>
+                    </b-field>
+                </div>
+                <b-button type="is-primary"  @click="onGenerateVectorClicked" expanded>Create Vector!</b-button>
+            </section>
+        </div>
+    </article>
+</div>
 </section>
+
+

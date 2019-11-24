@@ -6,25 +6,24 @@ export default {
     template,
     data() {
         return {
-            data: [
-            ],
-            columns: [
-                {
-                    field: 'pattern',
-                    label: 'Main Pattern',
-                },
-                {
-                    field: 'cost',
-                    label: 'Cost'
-                },
-                {
-                    field: 'configuration.tactic_id',
-                    label: 'Configuration'
-                }
-            ]
+            columnsVisible: {
+                pattern: { title: 'Main Pattern', display: true },
+                cost: { title: 'Cost', display: true },
+                tacticName: { title: 'Tactic name', display: true },
+                modificationType: { title: 'Modification type', display: true },
+            },
+            showDetailIcon: true
         }
     },
     computed: mapState([
         'configuration'
-    ])
+    ]),
+    methods: {
+        toggle(row) {
+            this.$refs.table.toggleDetails(row)
+        },
+        onStartClicked() {
+            this.$router.push({path:"/vectorForm"})
+        }
+    }
 }

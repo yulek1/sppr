@@ -1,1 +1,11 @@
-<b-table :data="vector" :columns="columns"/>
+<section>
+    <div class="tile is-parent is-vertical">
+    <article class="tile is-child box">
+        <div class="content">
+            <p class="title">Requirements vector: </p>
+            <b-table :data="vector" :columns="columns"/>
+            <b-button type="is-primary"  @click="onClickContinue" expanded>Contunue...</b-button>
+        </div>
+    </article>
+</div>
+</section>

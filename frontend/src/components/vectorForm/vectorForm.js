@@ -65,6 +65,7 @@ export default {
                 realTime: this.selectedRealTime,
                 analytics: this.selectedAnalytics
             });
+            this.$router.push({path:"/vectorArea"})
         }
     }
 }

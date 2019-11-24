@@ -1,15 +1,24 @@
 <section>
-    <div class="content">
-    <b-field label="Preferable pattern: ">
-        <b-select v-model="selected" expanded>
-            <option
-                    v-for="pattern in pattern"
-                    :value="pattern.id"
-                    :key="pattern.id">
-                {{ pattern.name }}
-            </option>
-        </b-select>
-    </b-field>
-    </div>
-    <b-button type="is-primary" @click="onGenerateConfigurationClicked" expanded>Generate variants!</b-button>
+    <div class="tile is-parent is-vertical">
+    <article class="tile is-child box">
+        <div class="content">
+            <p class="title">User preferences: </p>
+            <section>
+                <div class="content">
+                    <b-field label="Preferable pattern: ">
+                        <b-select v-model="selected" expanded>
+                            <option
+                                    v-for="pattern in pattern"
+                                    :value="pattern.id"
+                                    :key="pattern.id">
+                                {{ pattern.name }}
+                            </option>
+                        </b-select>
+                    </b-field>
+                </div>
+                <b-button type="is-primary" @click="onGenerateConfigurationClicked" expanded>Generate variants!</b-button>
+            </section>
+        </div>
+    </article>
+</div>
 </section>

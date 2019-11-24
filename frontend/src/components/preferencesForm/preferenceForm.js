@@ -23,6 +23,7 @@ export default {
             this.$store.dispatch('CALL_CONFIGURATION_SERVICE', {
                 preferred: this.selected
             });
+            this.$router.push({path:"/configurationTable"})
         }
     }
 }

@@ -24,5 +24,10 @@ export default {
     },
     computed: mapState([
         'vector'
-    ])
+    ]),
+    methods: {
+        onClickContinue() {
+            this.$router.push({path:"/preferencesForm"})
+        }
+    }
 }

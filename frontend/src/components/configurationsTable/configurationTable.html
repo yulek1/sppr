@@ -1,1 +1,76 @@
-<b-table :data="configuration" :columns="columns"></b-table>
+<section>
+    <div class="tile is-parent is-vertical">
+    <article class="tile is-child box">
+        <div class="content">
+            <p class="title">Configuration: </p>
+            <section>
+                <b-table
+                        :data="configuration"
+                        ref="table"
+                        detailed
+                        hoverable
+                        custom-detail-row
+                        :default-sort="['name', 'asc']"
+                        detail-key="pattern"
+                        :show-detail-icon="showDetailIcon">
+
+                    <template slot-scope="props">
+                        <b-table-column
+                                field="pattern"
+                                :visible="columnsVisible['pattern'].display"
+                                :label="columnsVisible['pattern'].title"
+                                width="300"
+                                sortable>
+                            <template v-if="showDetailIcon">
+                                {{ props.row.pattern }}
+                            </template>
+                            <template v-else>
+                                <a @click="toggle(props.row)">
+                                    {{ props.row.pattern }}
+                                </a>
+                            </template>
+                        </b-table-column>
+
+                        <b-table-column
+                                field="cost"
+                                :visible="columnsVisible['cost'].display"
+                                :label="columnsVisible['cost'].title"
+                                sortable
+                                centered>
+                            {{ props.row.cost }}
+                        </b-table-column>
+
+                        <b-table-column
+                                field="available"
+                                :visible="columnsVisible['tacticName'].display"
+                                :label="columnsVisible['tacticName'].title"
+                                sortable
+                                centered>
+                            {{ props.row.tacticName }}
+                        </b-table-column>
+
+                        <b-table-column
+                                :visible="columnsVisible['modificationType'].display"
+                                :label="columnsVisible['modificationType'].title"
+                                centered>
+                            {{ props.row.modificationType }}
+                        </b-table-column>
+                    </template>
+
+                    <template slot="detail" slot-scope="props">
+                        <tr v-for="item in props.row.configuration">
+                            <td v-if="showDetailIcon"></td>
+                            <td v-show="columnsVisible['tacticName'].display" class="has-text-centered"></td>
+                            <td v-show="columnsVisible['tacticName'].display" class="has-text-centered"></td>
+                            <td v-show="columnsVisible['tacticName'].display" >&nbsp;&nbsp;&nbsp;&nbsp;{{ item.tactic_name }}</td>
+                            <td v-show="columnsVisible['modificationType'].display" class="has-text-centered">{{ item.modification_type_name }}</td>
+                        </tr>
+                    </template>
+                </b-table>
+            </section>
+            <b-button type="is-primary" @click="onStartClicked" expanded>I want another time!</b-button>
+        </div>
+    </article>
+</div>
+</section>
+
