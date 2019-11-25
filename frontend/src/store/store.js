@@ -4,11 +4,6 @@ import mainService from '../services/mainService';
 
 Vue.use(Vuex);
 
-const actionTypes = {
-    CALL_VECTOR_SERVICE: 'CALL_VECTOR_SERVICE',
-    CALL_GENERATE_CONFIGURATION: 'CALL_GENERATE_CONFIGURATION'
-};
-
 const actions = {
     CALL_VECTOR_SERVICE: async (state, data) => {
        let response = await mainService.createVector(data);

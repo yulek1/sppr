@@ -1,9 +1,13 @@
 <section>
-    <div class="tile box is-vertical">
-        <div class="content">
-            <p class="title">Requirements vector: </p>
-            <b-table :data="vector" :columns="columns"/>
-            <b-button type="is-primary"  @click="onClickContinue" expanded>Contunue...</b-button>
+    <div class="columns is-desktop">
+        <div class="column"/>
+        <div class="column">
+             <div class="content">
+                <p class="title">Requirements vector: </p>
+                <b-table :data="vector" :columns="columns"/>
+                <b-button type="is-primary"  @click="onClickContinue" expanded>Contunue...</b-button>
+            </div>
         </div>
-</div>
+        <div class="column"/>
+    </div>
 </section>
